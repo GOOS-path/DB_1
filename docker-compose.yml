@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  postgres_1:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Andryushchenko_BSE206"
+      POSTGRES_USER: "Andryushchenko_BSE206"
+      POSTGRES_PASSWORD: "Andryushchenko_BSE206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/init_hospital.sql:/docker-entrypoint-initdb.d/init_hospital.sql
+      - ./docker/db/data/data_hospital:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  postgres_2:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Andryushchenko_BSE206"
+      POSTGRES_USER: "Andryushchenko_BSE206"
+      POSTGRES_PASSWORD: "Andryushchenko_BSE206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/init_library.sql:/docker-entrypoint-initdb.d/init_library.sql
+      - ./docker/db/data/data_library:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  postgres_3:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Andryushchenko_BSE206"
+      POSTGRES_USER: "Andryushchenko_BSE206"
+      POSTGRES_PASSWORD: "Andryushchenko_BSE206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/init_station.sql:/docker-entrypoint-initdb.d/init_station.sql
+      - ./docker/db/data/data_station:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
